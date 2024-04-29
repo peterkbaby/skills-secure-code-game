@@ -1,12 +1,3 @@
-// Welcome to Secure Code Game Season-1/Level-2!
-
-// Follow the instructions below to get started:
-
-// 1. Perform code review. Can you spot the bug? 
-// 2. Run tests.c to test the functionality
-// 3. Run hack.c and if passing then CONGRATS!
-// 4. Compare your solution with solution.c
-
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -80,7 +71,8 @@ bool update_setting(int user_id, const char *index, const char *value) {
         return false;
 
     v = strtol(value, &endptr, 10);
-    if (*endptr || i >= SETTINGS_COUNT)
+    // FIX: We should check for negative index values too! Scroll for the full solution
+    if (*endptr || i < 0 || i >= SETTINGS_COUNT)
         return false;
     accounts[user_id]->setting[i] = v;
     return true;
